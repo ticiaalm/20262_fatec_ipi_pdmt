@@ -1,51 +1,45 @@
 import React from 'react'
+import EstacaoClimatica from './EstacaoClimatica'
 class App extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            latitude: null,
-            longitude: null,
-            estacao: null,
-            data: null,
-            icone: null,
-            mensagemDeErro: null
-        }
+    state = {
+        latitude: null,
+        longitude: null,
+        estacao: null,
+        data: null,
+        icone: null,
+        mensagemDeErro: null
+    }
+    componentDidMount() {
+        // this.obterLocalizacao()
+    }
+    componentDidUpdate() {
+
+    }
+    componentWillUnmount() {
+
     }
     render() {
         return (
             <div className='container border mt-2 py-3'>
                 <div className='row justify-content-center'>
                     <div className='col-12 col-md-8'>
-                        <div className='card'>
-                            <div className='card-body'>
-                                <div
-                                    style={{ height: '6rem' }}
-                                    className='d-flex align-items-center border rounded mb-2'>
-                                    <i className={`fa-solid fa-5x ${this.state.icone}`}></i>
-                                    <p className="w-75 ms-3 text-center fs-1">
-                                        {this.state.estacao}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-center">
-                                        {
-                                            this.state.latitude ?
-                                                `Coordenadas: ${this.state.latitude}, ${this.state.longitude} | Data: ${this.state.data}`
-                                                :
-                                                this.state.mensagemDeErro ?
-                                                `Tente novamente mais tarde`
-                                                :
-                                                `Clique no botão para saber a sua estação climática`
-                                        }
-                                    </p>
-                                </div>
-                                <button
-                                    className='btn btn-outline-primary w-100 mt-2'
-                                    onClick={this.obterLocalizacao}>
-                                    Qual a minha estação?
-                                </button>
-                            </div>
-                        </div>
+                        {
+                            this.state.mensagemDeErro ?
+                                <p className='border rounded p-2 fs-1 text-center'>
+                                    É preciso dar permissão para acesso à localização. Atualize a página e tente novamente, ajustando a configuração do seu navegador.
+                                </p>
+                            :
+                            <EstacaoClimatica 
+                                icone={this.state.icone}
+                                estacao={this.state.estacao}
+                                latitude={this.state.latitude}
+                                longitude={this.state.longitude}
+                                data={this.state.data}
+                                mensagemDeErro={this.state.mensagemDeErro}
+                                obterLocalizacao={this.obterLocalizacao}
+                                raiz={this.props.raiz}
+                            />
+                        }
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import EstacaoClimatica from './EstacaoClimatica'
+import Loading from './Loading'
 class App extends React.Component {
     state = {
         latitude: null,
@@ -10,7 +11,7 @@ class App extends React.Component {
         mensagemDeErro: null
     }
     componentDidMount() {
-        // this.obterLocalizacao()
+        this.obterLocalizacao()
     }
     componentDidUpdate() {
 
@@ -20,10 +21,13 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div className='container border mt-2 py-3'>
+            <div className='container border rounded py-3 mt-2'>
                 <div className='row justify-content-center'>
                     <div className='col-12 col-md-8'>
                         {
+                            (!this.state.latitude && !this.state.mensagemDeErro) ?
+                                <Loading />
+                            :
                             this.state.mensagemDeErro ?
                                 <p className='border rounded p-2 fs-1 text-center'>
                                     É preciso dar permissão para acesso à localização. Atualize a página e tente novamente, ajustando a configuração do seu navegador.

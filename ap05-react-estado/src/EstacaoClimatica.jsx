@@ -10,6 +10,7 @@ export default class EstacaoClimatica extends Component {
             this.setState({
                 data: new Date().toLocaleTimeString()
             })
+            console.log('Disparou o timer...')
         }, 1000)
     }
     componentWillUnmount() {

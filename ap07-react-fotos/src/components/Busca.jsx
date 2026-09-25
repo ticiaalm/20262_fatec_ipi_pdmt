@@ -13,11 +13,11 @@ export default class Busca extends Component {
         /* Antes de mais nada, transformar o texto para que seja escrito somente maiúsculas */
         /* Pegar o texto resultante e guardar na variável termoDeBusca */
         /* this.setState({termoDeBusca: evento.target.value.toUpperCase()}) */
-        this.setState({termoDeBusca: evento.target.value})
+        this.setState({ termoDeBusca: evento.target.value })
     }
     onFormSubmit = (evento) => {
         evento.preventDefault()
-        this.props.onBuscaRealizada(termoDeBusca)
+        this.props.onBuscaRealizada(this.state.termoDeBusca)
     }
 
     render() {

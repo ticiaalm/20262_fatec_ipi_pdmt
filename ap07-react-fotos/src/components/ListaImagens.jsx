@@ -6,10 +6,12 @@
 
 import Imagem from "./Imagem"
 
-const ListaImagens = ({ photos }) => {
+const ListaImagens = ({ photos, imgStyle }) => {
     return (
         photos.map((photo, key) => (
-            <Imagem src={photo.src.small} alt={photo.alt} />
+            <Imagem 
+                imgStyle={imgStyle}
+                src={photo.src.small} alt={photo.alt} />
         ))
     )
 }

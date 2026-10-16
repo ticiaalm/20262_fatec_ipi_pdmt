@@ -1,9 +1,9 @@
-const Imagem = ({ src, alt }) => { // expressão de desestruturação
-    /* const src = props.src
-    const alt = props.alt */
+const Imagem = ({ src, alt, imgStyle }) => { // expressão de desestruturação
     return (
-        <div>
-            <img src={src} alt={alt} />
+        <div className={`${imgStyle} flex-column justify-content-center`}>
+            <img className="border-round" 
+                src={src} 
+                alt={alt} />
         </div>
     )
 }

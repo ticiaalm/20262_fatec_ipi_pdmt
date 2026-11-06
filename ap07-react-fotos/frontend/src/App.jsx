@@ -8,7 +8,8 @@ export default class App extends React.Component {
   /* pexelsClient = null */
 
   state = {
-    photos: []
+    photos: [],
+    colecao: null
   }
 
   componentDidMount() {
@@ -29,7 +30,13 @@ export default class App extends React.Component {
       }
     })
     .then((result) => {
-      this.setState({ photos: result.data.photos })
+      this.setState({
+        photos: result.data.fotos,
+        colecao: result.data.colecao
+      })
+    })
+    .catch((e) => {
+      console.error("Erro ao buscar fotos:", e)
     })
   }
 
@@ -46,6 +53,11 @@ export default class App extends React.Component {
           <Busca onBuscaRealizada={this.onBuscaRealizada} />
         </div>
         <div className="col-12">
+          <p>
+            Total de resultados:
+            {" "}
+            {this.state.colecao?.total_results ?? 0}
+          </p>
           <div className="grid">
             <ListaImagens
             imgStyle={'col-12 md:col-6 lg:col-4 xl:col-3'}
